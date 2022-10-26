@@ -17,11 +17,11 @@ class DatabaseM:
                    password=passwordio, email=emailio)
         return (create_entry([iin], self.engine))
 
-    def deleteUserData(self, id, fromio=User) -> bool:
-        return delete(GetData(self.engine, id, fromio), self.engine)
+    def deleteUserData(self, id) -> bool:
+        return delete(GetData(self.engine, id, User), self.engine)
 
-    def deleteCvData(self, id, fromio=Cv) -> bool:
-        return delete(GetData(self.engine, id, fromio), self.engine)
+    def deleteCvData(self, id) -> bool:
+        return delete(GetData(self.engine, id, Cv), self.engine)
 
     def updateUser(self, new_value, fromio) -> bool:
         Data = GetData(self.engine, new_value[0], fromio)
