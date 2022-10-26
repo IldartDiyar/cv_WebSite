@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from sqlalchemy import update
 
 
 def create_entry(models: list, engine) -> bool:
@@ -21,15 +22,11 @@ def delete(models: list, engine):
         return False
 
 
-def update(models: list, new_value: list, engine):
+def updatio(models: list, new_value: list, engine):
     try:
         with Session(engine) as session:
-            for keys, x in models, range(new_value):
-                asd = models.keys
-                asd1 = new_value[x]
-                models.keys = new_value[x]
-                print(asd, " ", asd1)
-                session.commit()
-            return True
+            models.update(new_value,  synchronize_session=False)
+            session.commit()
+            session.refresh()
     except:
         return False
